@@ -1,0 +1,21 @@
+{
+	"name": "@adlad/plugin-coolmathgames",
+	"version": "0.0.1",
+	"description": "AdLad plugin for the Coolmath Games sdk.",
+	"main": "mod.js",
+	"types": "dist/adlad-plugin-coolmathgames.d.ts",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Pelican-Party/adlad-plugin-coolmathgames.git"
+	},
+	"keywords": [
+		"ads",
+		"coolmathgames"
+	],
+	"author": "Pelican Party Studios",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/Pelican-Party/adlad-plugin-coolmathgames/issues"
+	},
+	"homepage": "https://github.com/Pelican-Party/adlad-plugin-coolmathgames#readme"
+}
