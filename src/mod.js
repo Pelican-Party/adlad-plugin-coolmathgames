@@ -19,13 +19,13 @@ export function coolmathGamesPlugin() {
 				lastCallDidShowFullScreenAd = true;
 			});
 			document.addEventListener("adBreakComplete", () => {
-				onAdBreakCompleteCbs.forEach(cb => cb());
+				onAdBreakCompleteCbs.forEach((cb) => cb());
 				onAdBreakCompleteCbs.clear();
-			})
+			});
 
 			const jqueryUrl = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js";
 			await import(jqueryUrl);
-			const sdkUrl = "https://www.coolmathgames.com/sites/default/files/cmg-ads.js"
+			const sdkUrl = "https://www.coolmathgames.com/sites/default/files/cmg-ads.js";
 			await import(sdkUrl);
 		},
 		manualNeedsPause: true,
@@ -40,7 +40,7 @@ export function coolmathGamesPlugin() {
 			cmgAdBreak();
 
 			/** @type {Promise<void>} */
-			const promise = new Promise(resolve => {
+			const promise = new Promise((resolve) => {
 				onAdBreakCompleteCbs.add(resolve);
 			});
 			await promise;
@@ -49,12 +49,12 @@ export function coolmathGamesPlugin() {
 				return {
 					didShowAd: true,
 					errorReason: null,
-				}
+				};
 			} else {
 				return {
 					didShowAd: false,
-					errorReason: "time-constraint"
-				}
+					errorReason: "time-constraint",
+				};
 			}
 		},
 	});
