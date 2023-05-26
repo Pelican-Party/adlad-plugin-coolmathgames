@@ -31,12 +31,12 @@ export function coolmathGamesPlugin() {
 		manualNeedsPause: true,
 		manualNeedsMute: true,
 		async gameplayStart() {
-			// @ts-ignore
+			// @ts-ignore External call
 			parent.cmgGameEvent("start");
 		},
 		async showFullScreenAd() {
 			lastCallDidShowFullScreenAd = false;
-			// @ts-ignore
+			// @ts-ignore External call
 			cmgAdBreak();
 
 			/** @type {Promise<void>} */
