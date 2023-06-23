@@ -19,6 +19,8 @@ export function coolmathGamesPlugin() {
 				lastCallDidShowFullScreenAd = true;
 			});
 			document.addEventListener("adBreakComplete", () => {
+				ctx.setNeedsPause(true);
+				ctx.setNeedsMute(true);
 				onAdBreakCompleteCbs.forEach((cb) => cb());
 				onAdBreakCompleteCbs.clear();
 			});
