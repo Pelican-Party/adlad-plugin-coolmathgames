@@ -23,10 +23,26 @@ export function coolmathGamesPlugin() {
 				onAdBreakCompleteCbs.clear();
 			});
 
-			const jqueryUrl = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js";
-			await import(jqueryUrl);
-			const sdkUrl = "https://www.coolmathgames.com/sites/default/files/cmg-ads.js";
-			await import(sdkUrl);
+			/**
+			 * @param {string} src
+			 */
+			function createScript(src) {
+				const script = document.createElement("script");
+				script.src = src;
+				document.body.appendChild(script);
+				/** @type {Promise<void>} */
+				const promise = new Promise((resolve, reject) => {
+					script.addEventListener("load", () => {
+						resolve();
+					});
+					script.addEventListener("error", (e) => {
+						reject(e.error);
+					});
+				});
+				return promise;
+			}
+			await createScript("https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js");
+			await createScript("https://www.coolmathgames.com/sites/default/files/cmg-ads.js");
 		},
 		manualNeedsPause: true,
 		manualNeedsMute: true,
