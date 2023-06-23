@@ -52,13 +52,15 @@ export function coolmathGamesPlugin() {
 		},
 		async showFullScreenAd() {
 			lastCallDidShowFullScreenAd = false;
-			// @ts-ignore External call
-			cmgAdBreak();
 
 			/** @type {Promise<void>} */
 			const promise = new Promise((resolve) => {
 				onAdBreakCompleteCbs.add(resolve);
 			});
+
+			// @ts-ignore External call
+			cmgAdBreak();
+
 			await promise;
 
 			if (lastCallDidShowFullScreenAd) {
