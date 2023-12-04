@@ -73,7 +73,7 @@ export function coolmathGamesPlugin() {
 			} else {
 				return {
 					didShowAd: false,
-					errorReason: "time-constraint",
+					errorReason: /** @type {const} */ ("time-constraint"),
 				};
 			}
 		},
