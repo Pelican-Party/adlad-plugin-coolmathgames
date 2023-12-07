@@ -5,6 +5,10 @@ export function coolmathGamesPlugin() {
 	/** @type {Set<() => void>} */
 	const onAdBreakCompleteCbs = new Set();
 
+	/** @type {undefined | string} */
+	let currentLevel = undefined;
+	let currentLevelIsReplay = false;
+
 	const plugin = /** @type {const} @satisfies {import("$adlad").AdLadPlugin} */ ({
 		name: "coolmathgames",
 		async initialize(ctx) {
@@ -49,8 +53,7 @@ export function coolmathGamesPlugin() {
 		manualNeedsPause: true,
 		manualNeedsMute: true,
 		async gameplayStart() {
-			// @ts-ignore External call
-			parent.cmgGameEvent("start");
+			updateCurrentLevel();
 		},
 		async showFullScreenAd() {
 			lastCallDidShowFullScreenAd = false;
@@ -77,7 +80,28 @@ export function coolmathGamesPlugin() {
 				};
 			}
 		},
+		customRequests: {
+			/**
+			 * @param {string} level
+			 * @param {boolean} isReplay
+			 */
+			setCurrentLevel(level, isReplay) {
+				currentLevel = level;
+				currentLevelIsReplay = isReplay;
+				updateCurrentLevel();
+			},
+		},
 	});
+
+	function updateCurrentLevel() {
+		if (currentLevelIsReplay) {
+			// @ts-ignore External call
+			parent.cmgGameEvent("replay", currentLevel);
+		} else {
+			// @ts-ignore External call
+			parent.cmgGameEvent("start", currentLevel);
+		}
+	}
 
 	return plugin;
 }
