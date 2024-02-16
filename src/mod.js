@@ -29,26 +29,8 @@ export function coolmathGamesPlugin() {
 				onAdBreakCompleteCbs.clear();
 			});
 
-			/**
-			 * @param {string} src
-			 */
-			function createScript(src) {
-				const script = document.createElement("script");
-				script.src = src;
-				document.body.appendChild(script);
-				/** @type {Promise<void>} */
-				const promise = new Promise((resolve, reject) => {
-					script.addEventListener("load", () => {
-						resolve();
-					});
-					script.addEventListener("error", (e) => {
-						reject(e.error);
-					});
-				});
-				return promise;
-			}
-			await createScript("https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js");
-			await createScript("https://www.coolmathgames.com/sites/default/files/cmg-ads.js");
+			await ctx.loadScriptTag("https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js");
+			await ctx.loadScriptTag("https://www.coolmathgames.com/sites/default/files/cmg-ads.js");
 		},
 		manualNeedsPause: true,
 		manualNeedsMute: true,
@@ -65,6 +47,11 @@ export function coolmathGamesPlugin() {
 
 			// @ts-ignore External call
 			cmgAdBreak();
+
+			const adsPopupEl = document.querySelector(".ads-popup");
+			if (adsPopupEl instanceof HTMLElement) {
+				adsPopupEl.style.overflow = "hidden";
+			}
 
 			await promise;
 
