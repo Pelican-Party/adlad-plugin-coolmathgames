@@ -92,3 +92,5 @@ export function coolmathGamesPlugin() {
 
 	return plugin;
 }
+
+export default coolmathGamesPlugin;
