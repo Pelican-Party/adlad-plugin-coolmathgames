@@ -2,6 +2,12 @@ name: Publish Package to npmjs
 on:
   release:
     types: [published]
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   npmrelease:
     runs-on: ubuntu-latest
@@ -9,9 +15,9 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Setup Deno
-        uses: denoland/setup-deno@v1.1.1
+        uses: denoland/setup-deno@v2.0.2
         with:
-          deno-version: v1.30.3
+          deno-version: v2.6.10
 
       - run: deno task check
       - run: deno task bundle

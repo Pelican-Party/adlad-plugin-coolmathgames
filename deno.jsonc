@@ -2,35 +2,32 @@
 	"compilerOptions": {
 		"checkJs": true
 	},
+	"lock": false,
 	"tasks": {
 		// Updates third party types. Useful if you want type checking in your IDE.
-		"dev": "deno run --unstable -A scripts/dev.js",
+		"dev": "deno run -A scripts/dev.js",
 		// performs all tasks that are generally required for ci to pass
 		"check": "deno fmt --check && deno lint",
-		// Bundles AdLad into a single file so that it can be published to package managers.
+		// Bundles the plugin into a single file so that it can be published to package managers.
 		"bundle": "deno run --allow-read --allow-write --allow-env --allow-run scripts/bundle.js"
 	},
+	"nodeModulesDir": "auto",
 	"fmt": {
-		"files": {
-			"exclude": [
-				".denoTypes",
-				"dist"
-			]
-		},
-		"options": {
-			"indentWidth": 4,
-			"useTabs": true,
-			"lineWidth": 120,
-			"proseWrap": "preserve"
-		}
+		"exclude": [
+			".denoTypes",
+			"dist",
+			".github/workflows"
+		],
+		"indentWidth": 4,
+		"useTabs": true,
+		"lineWidth": 120,
+		"proseWrap": "preserve"
 	},
 	"lint": {
-		"files": {
-			"exclude": [
-				".denoTypes",
-				"dist"
-			]
-		},
+		"exclude": [
+			".denoTypes",
+			"dist"
+		],
 		"rules": {
 			"exclude": ["require-await"]
 		}
