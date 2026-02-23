@@ -1,6 +1,6 @@
 {
 	"name": "@adlad/plugin-coolmathgames",
-	"version": "0.1.1",
+	"version": "0.2.0",
 	"description": "AdLad plugin for the Coolmath Games sdk.",
 	"main": "mod.js",
 	"types": "dist/adlad-plugin-coolmathgames.d.ts",
