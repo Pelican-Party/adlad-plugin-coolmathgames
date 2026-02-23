@@ -29,7 +29,7 @@
 			"dist"
 		],
 		"rules": {
-			"exclude": ["require-await"]
+			"exclude": ["require-await", "no-import-prefix"]
 		}
 	},
 	"importMap": "importmap.json"
