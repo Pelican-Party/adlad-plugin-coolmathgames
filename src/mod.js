@@ -21,9 +21,9 @@ export function coolmathGamesPlugin({
 	 */
 	function wait(ms) {
 		/** @type {Promise<void>} */
-		const promise = new Promise(resolve => {
+		const promise = new Promise((resolve) => {
 			setTimeout(resolve, ms);
-		})
+		});
 		return promise;
 	}
 
@@ -58,11 +58,11 @@ export function coolmathGamesPlugin({
 		document.body.appendChild(splashElement);
 
 		/** @type {Promise<void>} */
-		const imageLoadPromise = new Promise(resolve => {
+		const imageLoadPromise = new Promise((resolve) => {
 			imageElement.addEventListener("load", () => {
 				resolve();
-			})
-		})
+			});
+		});
 		await imageLoadPromise;
 
 		await wait(1500);
